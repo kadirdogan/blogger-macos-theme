@@ -1,0 +1,249 @@
+/*
+ * Blogger macOS Window Theme
+ * Designed by Kadir Doğan — doankadir.blogspot.com
+ *
+ * Gives Blogger posts a classic Mac OS window appearance
+ * with stipple title bar, close box, scroll tracks, and inner borders.
+ *
+ * Usage:
+ *   1. Paste contents of style.css into your Blogger theme's b:skin CDATA block
+ *   2. Paste contents of script.js before </body> in your Blogger theme XML,
+ *      wrapped in: <script type='text/javascript'>//<![CDATA[ ... //]]></script>
+ */
+
+/* ─── Post container ───────────────────────────────────────────── */
+.post-outer,
+.inline-ad {
+  position: relative !important;
+  padding: 0 !important;
+  border: 1.5px solid #999 !important;
+  border-radius: 0 !important;
+  box-shadow: 2px 2px 0 #aaa !important;
+  display: flex !important;
+  flex-direction: column !important;
+  overflow: hidden !important;
+}
+
+/* ─── Title bar ─────────────────────────────────────────────────── */
+.mac-top {
+  display: flex;
+  height: 32px;
+  position: relative;
+}
+
+.mac-corner-btn {
+  width: 22px;
+  flex-shrink: 0;
+  background: #e8e8e8;
+  position: relative;
+  z-index: 2;
+}
+
+/* Close box — 3D bevel effect */
+.mac-corner-btn::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  width: 14px;
+  height: 14px;
+  border-top: 1.5px solid #fff;
+  border-left: 1.5px solid #fff;
+  border-bottom: 1.5px solid #666;
+  border-right: 1.5px solid #666;
+  background: #c0c0c0;
+  z-index: 3;
+}
+
+.mac-titlebar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  background: #e8e8e8;
+  overflow: hidden;
+}
+
+.mac-corner-right {
+  width: 7px;
+  flex-shrink: 0;
+  background: #e8e8e8;
+}
+
+/* ─── Stipple stripes ────────────────────────────────────────────── */
+.mac-stripe-wrap {
+  flex: 1;
+  min-width: 20px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.mac-stripe-wrap:first-of-type {
+  padding-left: 11px;
+}
+
+/* 3-tone horizontal line bitmap — koyu / orta / açık */
+.mac-stripe-inner {
+  width: 100%;
+  height: calc(100% - 16px);
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAADCAIAAADdv/LVAAAAFElEQVR42mNoampiuHTpEsOHDx8AI6wGzf3PvmUAAAAASUVORK5CYII=');
+  background-repeat: repeat;
+  image-rendering: pixelated;
+}
+
+/* ─── Title text ─────────────────────────────────────────────────── */
+.mac-titlebar-text {
+  flex: 0 1 auto;
+  min-width: 0;
+  max-width: 80%;
+  font-size: 14px;
+  font-family: 'Courier New', monospace;
+  font-weight: 700;
+  color: #000;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: #e8e8e8;
+  padding: 0 10px;
+  line-height: 32px;
+}
+
+.mac-titlebar-text a {
+  color: #000 !important;
+  text-decoration: none !important;
+}
+
+/* ─── Content area with scroll tracks ───────────────────────────── */
+.mac-middle {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Horizontal inner border — aligned with vertical scroll track borders */
+.mac-middle::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 7px;
+  right: 7px;
+  height: 1.5px;
+  background: #999;
+  z-index: 2;
+}
+
+.mac-scroll-l {
+  width: 7px;
+  flex-shrink: 0;
+  background: #e8e8e8;
+  border-right: 1.5px solid #999;
+}
+
+.mac-scroll-l2 {
+  width: 15px;
+  flex-shrink: 0;
+  background: #fff;
+}
+
+.mac-scroll-r {
+  width: 15px;
+  flex-shrink: 0;
+  background: #fff;
+}
+
+.mac-scroll-r2 {
+  width: 7px;
+  flex-shrink: 0;
+  background: #e8e8e8;
+  border-left: 1.5px solid #999;
+}
+
+/* ─── Bottom bar ─────────────────────────────────────────────────── */
+.mac-bottom-bar {
+  display: flex;
+  height: 7px;
+  width: 100%;
+}
+
+.mac-bottom-l {
+  width: 7px;
+  flex-shrink: 0;
+  background: #e8e8e8;
+}
+
+.mac-bottom-mid {
+  flex: 1;
+  background: #e8e8e8;
+  border-top: 1.5px solid #999;
+}
+
+.mac-bottom-r {
+  width: 7px;
+  flex-shrink: 0;
+  background: #e8e8e8;
+}
+
+/* ─── Post content ───────────────────────────────────────────────── */
+.post-outer > .post {
+  padding: 15px !important;
+  min-width: 0;
+  overflow-x: hidden;
+}
+
+.post-outer h3.post-title {
+  display: none !important;
+}
+
+.post-body {
+  overflow-x: hidden;
+  min-width: 0;
+}
+
+pre {
+  max-width: 100%;
+  overflow-x: auto;
+  display: block;
+}
+
+/* ─── Copy button for code blocks ───────────────────────────────── */
+.copy-btn {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-family: 'Courier New', monospace;
+  background: #e8e8e8;
+  border: 1px solid #999;
+  cursor: pointer;
+  color: #444;
+  z-index: 10;
+}
+
+.copy-btn:hover {
+  background: #d0d0d0;
+}
+
+.copy-btn.copied {
+  color: #27ae60;
+  border-color: #27ae60;
+}
+
+pre {
+  position: relative;
+}
+
+/* ─── Date / post grouping ───────────────────────────────────────── */
+.date-outer {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.date-posts {
+  border: none !important;
+  box-shadow: none !important;
+}
